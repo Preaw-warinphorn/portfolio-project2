@@ -75,3 +75,21 @@
   .dock .linkedin-button img{width:26px;height:26px}
   .education-card{padding:18px}.contact-links a{gap:12px;overflow-wrap:anywhere}
 }
+
+/* Always fit the portfolio canvas to the device's visible screen. */
+html,body,#root{width:100%;height:100%;margin:0}
+body{overflow:hidden}
+.desktop-shell{width:100%;height:100vh;height:100dvh;min-height:0}
+
+@media(max-width:780px){
+  html,body,#root{height:auto;min-height:100%}
+  body{overflow-x:hidden;overflow-y:auto}
+  .desktop-shell{height:auto;min-height:100vh;min-height:100dvh}
+}
+
+/* Let the composition use more space on large desktop monitors. */
+@media(min-width:1600px){
+  .hero-copy h1{font-size:clamp(120px,7.3vw,176px)}
+  .hero-copy .role{font-size:13px}.desktop-icon{transform:scale(1.08)}
+  .dock button{width:56px;height:56px}.os-window{width:min(900px,70vw);height:min(700px,72vh)}
+}
