@@ -14,7 +14,22 @@ const LINKS = {
 }
 
 const projects = [
-  { id: 'hutchison', title: 'Hutchison IT', kicker: 'Web redevelopment · In progress', icon: Code2, featured: true, summary: 'A modern website redevelopment focused on clearer information architecture, stronger usability and maintainable WordPress delivery.', tags: ['WordPress', 'UI/UX', 'Web'] },
+  {
+    id: 'hutchison', title: 'Hutchison IT', kicker: 'Web redevelopment · In progress', icon: Code2, featured: true,
+    summary: 'Designed and developed a responsive WordPress website for Hutchison IT, from interactive Figma prototypes and stakeholder feedback to website testing and deployment support.',
+    website: 'https://www.hutchisonit.com.au',
+    contributions: [
+      'Designed responsive page layouts and interactive prototypes using Figma and Figma Make.',
+      'Developed and customised the WordPress website using HTML, CSS, and JavaScript.',
+      'Created and improved the Home, About Us, Services, Projects, and Contact pages.',
+      'Built service information pop-ups, project sections, contact forms, consultation buttons, and responsive navigation.',
+      'Collaborated with stakeholders to gather requirements, present designs, and incorporate feedback.',
+      'Researched competitors and planned SEO-friendly website content for small-business customers.',
+      'Tested page links, mobile responsiveness, hover effects, forms, and overall usability.',
+      'Supported website deployment, documentation, privacy information, and ongoing maintenance planning.',
+    ],
+    tags: ['WordPress', 'Figma', 'HTML', 'CSS', 'JavaScript', 'Responsive Web Design', 'UI/UX Design', 'SEO', 'Website Testing', 'Stakeholder Communication'],
+  },
   { id: 'tetrix', title: 'Tetrix', kicker: 'Game · JavaFX', icon: FolderCode, summary: 'Interactive Tetris with single and two-player logic, persistent high scores, responsive resizing, audio and AI-based gameplay heuristics.', tags: ['Java', 'JavaFX', 'JSON'], demo: 'https://www.youtube.com/watch?v=MUCsAu3I0Wc' },
   { id: 'brick', title: 'Brick Measure', kicker: 'IoT · Hardware + Web', icon: FolderCode, summary: 'A NodeMCU smart-brick sensor measuring temperature, humidity and vibration, with a live dashboard and real-time safety alerts.', tags: ['C++', 'NodeMCU', 'JavaScript'], demo: 'https://www.youtube.com/watch?v=jNG6OQ4r49c' },
   { id: 'booking', title: 'Event Booking', kicker: 'Full-stack web', icon: FolderCode, summary: 'A Laravel event platform with organiser and attendee flows, validation, capacity controls, duplicate prevention and waiting lists.', tags: ['PHP', 'Laravel', 'MySQL'] },
@@ -34,12 +49,13 @@ function About() {
       <p>I’m a Master of Information Technology (Software Development) student at Griffith University, Gold Coast. Before Australia, I spent four years building and optimising COBOL systems across banking and fintech.</p>
       <p>That work taught me how to ship systems that cannot break. Today I combine that discipline with modern full-stack engineering and a growing focus on AI, cloud and cybersecurity.</p>
     </div>
-    <div className="status-strip"><span/> Available for casual & internship opportunities · Gold Coast, AU</div>
+    <div className="status-strip"><span/> Gold Coast, Australia</div>
   </div>
 }
 
 function Resume() {
   const roles = [
+    ['Hutchison IT', 'Web Development Intern', 'Designed responsive layouts and interactive prototypes in Figma and Figma Make, and developed WordPress pages using HTML, CSS, and JavaScript. Collaborated with stakeholders, planned SEO-friendly content, tested usability and mobile responsiveness, and supported deployment, documentation, and maintenance planning.'],
     ['NTT Data Thailand', 'COBOL Developer — Credit Card Systems', 'Built and optimised high-volume credit-card processing programs with a focus on security, data integrity and transaction stability.'],
     ['SS&C Technologies', 'Provident Fund System Developer', 'Developed mainframe modules, improved legacy flows and performed testing, debugging and performance tuning.'],
     ['Nanyang Technological University', 'Research Assistant — Google Maps Web App', 'Developed and tested a research prototype and authored operating procedures for the project team.'],
@@ -64,11 +80,22 @@ function ProjectList({ openProject }) {
 }
 
 function ProjectDetail({ project }) {
-  return <div className="project-detail"><div className="project-visual"><project.icon strokeWidth={1}/><span>{project.kicker}</span></div><div className="project-body"><p className="eyebrow">PROJECT / {project.id.toUpperCase()}</p><h2>{project.title}</h2><p className="lead">{project.summary}</p><div className="tag-row">{project.tags.map(t=><span key={t}>{t}</span>)}</div>{project.demo && <a className="text-link" href={project.demo} target="_blank" rel="noreferrer">Watch project demo ↗</a>}</div></div>
+  return <div className="project-detail">
+    <div className="project-visual"><project.icon strokeWidth={1}/><span>{project.kicker}</span></div>
+    <div className="project-body">
+      <p className="eyebrow">PROJECT / {project.id.toUpperCase()}</p><h2>{project.title}</h2>
+      <p className="lead">{project.summary}</p>
+      {project.website && <a className="text-link project-website" href={project.website} target="_blank" rel="noreferrer">Visit website ↗</a>}
+      {project.contributions && <section className="project-contributions"><h3>My contributions</h3><ul>{project.contributions.map(contribution => <li key={contribution}>{contribution}</li>)}</ul></section>}
+      {project.contributions && <h3 className="project-skills-heading">Skills</h3>}
+      <div className="tag-row">{project.tags.map(t=><span key={t}>{t}</span>)}</div>
+      {project.demo && <a className="text-link" href={project.demo} target="_blank" rel="noreferrer">Watch project demo ↗</a>}
+    </div>
+  </div>
 }
 
 function Contact() {
-  return <div className="window-copy contact-copy"><p className="eyebrow">CONTACT / GOLD COAST</p><h2>Let’s build<br/><em>secure systems.</em></h2><p>Open to casual and internship opportunities across Australia. Valid Australian visa with full work rights.</p><div className="contact-links"><a href={LINKS.email}>Email me <span>↗</span></a><a href="tel:0421615828">0421 615 828 <span>↗</span></a><a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a></div></div>
+  return <div className="window-copy contact-copy"><p className="eyebrow">CONTACT / GOLD COAST</p><h2>Let’s build<br/><em>secure systems.</em></h2><p>Open to job opportunities across Australia. Valid Australian visa with full work rights.</p><div className="contact-links"><a href={LINKS.email}>Email me <span>↗</span></a><a href="tel:0421615828">0421 615 828 <span>↗</span></a><a href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a></div></div>
 }
 
 function DesktopWindow({ item, active, onFocus, onClose, openProject, offset }) {
