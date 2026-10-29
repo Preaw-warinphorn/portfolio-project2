@@ -6,6 +6,7 @@ import {
   Mail, NotebookTabs, UserRound, X
 } from 'lucide-react'
 import './styles.css'
+import { Analytics } from "@vercel/analytics/next"
 
 const LINKS = {
   github: 'https://github.com/Preaw-warinphorn',
@@ -146,4 +147,9 @@ function App() {
   </main>
 }
 
-createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById('root')).render(
+  <>
+    <App />
+    <Analytics />
+  </>
+)
